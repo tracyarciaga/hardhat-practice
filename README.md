@@ -5,6 +5,13 @@
 
 # Crowdsale Contract Behavior
 - Timed
-- Stages 
+- Stages: First, Second
 - Access Control
+- PostDeliveryCrowdsale: Crowdsale that locks tokens from withdrawal until it ends.
+- AllowanceCrowdsale: Extension of Crowdsale where tokens are held by a wallet, which approves an allowance to the crowdsale.
+- Extension of closing time
+- Increasing rate price
+- Pausable (?): Contract will automatically pause for 30 days after first sale.
 
+# Notes
+- Conclusion for separate deployments of crowdsale contracts or just one with defined stages

@@ -11,7 +11,7 @@ contract LoftToken is ERC20, ERC20Detailed, ERC20Pausable {
   string private _symbol = "LOFT";
   uint8 private _decimals = 18;
   uint256 private _totalSupply = 100000;
-  address public owner;
+  address private _owner;
   
   constructor() 
     ERC20Detailed(_name, _symbol, _decimals) 
@@ -19,7 +19,14 @@ contract LoftToken is ERC20, ERC20Detailed, ERC20Pausable {
   {
     require(totalSupply() < _totalSupply, "Cannot mint more than 100K");
     _mint(msg.sender, _totalSupply);
-    owner = msg.sender;
+    // Set deployer as owner
+    _owner = msg.sender;
   }
  
+  function owner()
+    public view returns (address)
+  {
+    return _owner;
+  }
+
 }
