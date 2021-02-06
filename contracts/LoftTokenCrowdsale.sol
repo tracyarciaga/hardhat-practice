@@ -32,9 +32,9 @@ contract LoftTokenCrowdsale is Crowdsale, TimedCrowdsale {
     return contributions[_beneficiary];
   }
 
+ 
   /**
-  * @dev Override for extensions that require an internal state to check for validity (current user contributions,
-  * etc.)
+  * @dev Extend parent behavior by updating contributions.
   * @param beneficiary Address receiving the tokens
   * @param weiAmount Value in wei involved in the purchase
   */
