@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Pausable.sol";
 
-contract LoftToken is ERC20, ERC20Detailed, Pausable {
+contract LoftToken is ERC20, ERC20Detailed, ERC20Pausable {
 
   string private _name = "Loft Token";
   string private _symbol = "LOFT";
