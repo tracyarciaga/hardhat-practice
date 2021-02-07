@@ -112,7 +112,7 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
   function changeRate(uint256 rate) public {
     require(super.isOpen(), "Sale is already closed.");
     require(_admin.has(msg.sender), "Calling address does not have admin role.");
-    require(_stage == uint8(CrowdsaleStage.First), "Invalid stage. Cannot change rate for other stages.");
+    require(_stage != uint8(CrowdsaleStage.Second), "Invalid stage. Cannot change rate for other stages.");
     _stageRate = rate;
   }
 
