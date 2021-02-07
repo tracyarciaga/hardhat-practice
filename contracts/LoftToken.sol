@@ -17,7 +17,7 @@ contract LoftToken is ERC20, ERC20Detailed, ERC20Pausable {
     ERC20Detailed(_name, _symbol, _decimals) 
     public 
   {
-    require(totalSupply() < _totalSupply, "Cannot mint more than 100K");
+    require(_totalSupply < 100000, "Cannot mint more than 100K");
     _mint(msg.sender, _totalSupply);
     // Set deployer as owner
     _owner = msg.sender;
