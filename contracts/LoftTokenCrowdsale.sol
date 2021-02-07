@@ -46,9 +46,10 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
     // TODO: Comment if doing two deployments per stage.
     // _stage = uint8(CrowdsaleStage.First);
     // _secondSaleOpening = _closingTime + 30 days;
-    if (_crowdsaleStage == uint8(CrowdsaleStage.First)) {
-      _openingTime = now;
-    }
+    
+    // set opening time to now, maybe we don;t need _openingTime parameter.
+    _openingTime = now;
+    
 
     if (_crowdsaleStage == uint8(CrowdsaleStage.Second)) {
       require(_rate >= 150 && _rate <= 200, "Invalid rate for the main sale.");
