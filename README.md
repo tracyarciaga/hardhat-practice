@@ -15,3 +15,8 @@
 
 # Notes
 - Conclusion for separate deployments of crowdsale contracts or just one with defined stages
+
+# OpenZeppelin Links Used 
+https://docs.openzeppelin.com/contracts/2.x/
+https://docs.openzeppelin.com/contracts/2.x/crowdsales
+https://docs.openzeppelin.com/contracts/2.x/api/crowdsale
