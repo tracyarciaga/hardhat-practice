@@ -93,7 +93,7 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
   * @param closingTime new closingTime
   */
  function extendTime(uint256 closingTime) public {
-    require(super.isOpen(), "Sale is already closed.");
+    require(!super.isOpen(), "Sale is already closed.");
     require(_admin.has(msg.sender), "Calling address does not have admin role.");
     if (_stage == uint8(CrowdsaleStage.First)) {
       // Presale Closing time (can be adjusted to a maximum of 60 days)
