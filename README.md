@@ -11,7 +11,7 @@
 - AllowanceCrowdsale: Extension of Crowdsale where tokens are held by a wallet, which approves an allowance to the crowdsale.
 - Extension of closing time
 - Increasing rate price
-- Pausable (?): Contract will automatically pause for 30 days after first sale.
+- Pausable
 
 # Notes
 - Conclusion for separate deployments of crowdsale contracts or just one with defined stages

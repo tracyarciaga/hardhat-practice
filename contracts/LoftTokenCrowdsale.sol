@@ -40,10 +40,15 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
     // Set deployer as admin
     _admin.add(msg.sender);
     _stageRate = _rate;
+    _stage = _crowdsaleStage;
+ 
     // Set stage
     // TODO: Comment if doing two deployments per stage.
     // _stage = uint8(CrowdsaleStage.First);
     // _secondSaleOpening = _closingTime + 30 days;
+    if (_crowdsaleStage == uint8(CrowdsaleStage.First)) {
+      _openingTime = now;
+    }
 
     if (_crowdsaleStage == uint8(CrowdsaleStage.Second)) {
       require(_rate >= 150 && _rate <= 200, "Invalid rate for the main sale.");
@@ -87,7 +92,7 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
   * @param closingTime new closingTime
   */
  function extendTime(uint256 closingTime) public {
-    require(super.isOpen(), "Sale is already closed.")
+    require(super.isOpen(), "Sale is already closed.");
     require(_admin.has(msg.sender), "Calling address does not have admin role.");
     if (_stage == uint8(CrowdsaleStage.First)) {
       // Presale Closing time (can be adjusted to a maximum of 60 days)
@@ -99,15 +104,13 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
 
   /**
   * @dev Allows admin to change rate of the second sale.
-  * @param closingTime new closingTime
+  * @param rate new closingTime
   */
   function changeRate(uint256 rate) public {
-    require(super.isOpen(), "Sale is already closed.")
+    require(super.isOpen(), "Sale is already closed.");
     require(_admin.has(msg.sender), "Calling address does not have admin role.");
     require(_stage == uint8(CrowdsaleStage.Second), "Invalid stage. Cannot change rate for other stages.");
-    _stageRate = rate
-    uint256 weiAmount = msg.value;
-    super._getTokenAmount(weiAmount);
+    _stageRate = rate;
   }
 
   /**
@@ -119,7 +122,6 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
     uint256 currentRate = _stageRate;
     return _stageRate.mul(weiAmount);
   }
-}
 
   /**
   * @dev Extend parent behavior by updating contributions.
