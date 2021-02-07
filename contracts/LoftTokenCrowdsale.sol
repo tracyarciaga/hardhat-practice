@@ -50,9 +50,11 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
     // set opening time to now, maybe we don;t need _openingTime parameter.
     _openingTime = now;
     
-
+    if (_crowdsaleStage == uint8(CrowdsaleStage.First)) {
+      require(_rate >= 100, "Invalid rate for the first sale.");
+    }
     if (_crowdsaleStage == uint8(CrowdsaleStage.Second)) {
-      require(_rate >= 150 && _rate <= 200, "Invalid rate for the main sale.");
+      require(_rate >= 150 && _rate <= 200, "Invalid rate for the second sale.");
     }
 
   }
@@ -110,7 +112,7 @@ contract LoftTokenCrowdsale is Crowdsale, AllowanceCrowdsale, TimedCrowdsale, Po
   function changeRate(uint256 rate) public {
     require(super.isOpen(), "Sale is already closed.");
     require(_admin.has(msg.sender), "Calling address does not have admin role.");
-    require(_stage == uint8(CrowdsaleStage.Second), "Invalid stage. Cannot change rate for other stages.");
+    require(_stage == uint8(CrowdsaleStage.First), "Invalid stage. Cannot change rate for other stages.");
     _stageRate = rate;
   }
 
