@@ -9,8 +9,8 @@
 - Access Control
 - PostDeliveryCrowdsale: Crowdsale that locks tokens from withdrawal until it ends.
 - AllowanceCrowdsale: Extension of Crowdsale where tokens are held by a wallet, which approves an allowance to the crowdsale.
-- Extension of closing time
-- Increasing rate price
+- Extension of closing time.
+- Can change rate price.
 - Pausable
 
 # Notes
